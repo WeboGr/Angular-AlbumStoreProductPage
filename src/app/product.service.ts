@@ -2,8 +2,8 @@ import { Injectable } from '@angular/core'
 import { Album } from './album';
 import { Product } from './product';
 
-import { Http, Response } from '@angular/http'
-import 'rxjs/add/operator/map'
+import { Http, Response } from '@angular/http';
+import { map } from 'rxjs/add/operator/map';
 import { Observable } from 'rxjs/Observable';
 
 
@@ -14,15 +14,17 @@ export class ProductService {
   	constructor(private _http:Http) { }
 
   	private _albumUrl = '../assets/album.json';
+  	private _productsUrl = '../assets/products.json';
+
+
   	getAlbum(id:number): Observable<Album>{
   		return this._http.get(this._albumUrl)
   				.map(response => <Album>response.json());
   	} 
 
-  	private _productUrl = '../assets/products.json';
-  	getProducts():Observable<Product[]>{
-  		return this._http.get(this._productUrl)
-  				.map(response => <Product[]>response.json())	
+  	getProducts(): Observable<Product[]>{
+  		return this._http.get(this._productsUrl)
+  				.map(response => <Product[]>response.json());	
   	}
 
 }
